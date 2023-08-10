@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class BVTLoginServiceImpl implements BVTLoginService {
 
-    @Autowired
+//    @Autowired
     BVTLoginLogMapper loginLogMapper;
 
     @Override

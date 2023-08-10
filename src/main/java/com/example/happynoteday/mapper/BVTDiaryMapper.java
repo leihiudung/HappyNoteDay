@@ -1,11 +1,16 @@
-package com.example.happynoteday.service;
+package com.example.happynoteday.mapper;
 
 import com.example.happynoteday.entity.BVTDiaryEntity;
 import com.example.happynoteday.vo.BVTAbbrDiaryVO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface BVTDiaryService {
+@Mapper
+@Repository
+public interface BVTDiaryMapper {
 
     void saveDiary(BVTDiaryEntity diary);
 
@@ -13,6 +18,5 @@ public interface BVTDiaryService {
 
     BVTAbbrDiaryVO getDiaryAbbrById(int id);
     List<BVTAbbrDiaryVO> getDiaryAbbr();
-
 
 }

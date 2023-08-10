@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:改mapper.xml映射文件的唯一标识并且必须和数据处理层的接口的路径相同-->
+<mapper namespace="com.example.happynoteday.mapper.BVTDiaryMapper">
+    <!--   必须添加property属性 ，区别于是否加主键-->
+    <resultMap id="diary" type="com.example.happynoteday.entity.BVTDiaryEntity">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="content" column="content"/>
+        <result property="description" column="description"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+
+    </resultMap>
+
+    <resultMap id="abbr_diary" type="com.example.happynoteday.vo.BVTAbbrDiaryVO">
+
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+    </resultMap>
+
+    <!--添加博客-->
+    <insert id="saveDiary" parameterType="com.example.happynoteday.entity.BVTDiaryEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into diary (title, first_picture, content, description, create_time, update_time)
+        values (#{title}, #{firstPicture}, #{content}, #{description}, #{createTime}, #{updateTime})
+    </insert>
+
+    <select id="getDiaryById" resultMap="diary">
+        select id, title, first_picture, content, description, create_time, update_time
+        from diary
+        where id = #{id}
+    </select>
+
+    <!--按标题和分类查询博客List-->
+    <select id="getDiaryAbbrById" resultMap="abbr_diary">
+        select id, title
+        from diary
+        where id = #{id}
+
+    </select>
+
+    <select id="getDiaryAbbr" resultMap="abbr_diary">
+        select id, title
+        from diary
+    </select>
+</mapper>
